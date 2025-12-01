@@ -1,0 +1,26 @@
+{
+  "nomorPinjaman": "21971f83-d475-48b7-b4e7-dff3febd2016",
+  "pemberiNama": "Didik Supriyanto",
+  "pemberiTelp": "085784859486",
+  "peminjamNama": "AGUNG",
+  "peminjamTelp": "081101203899",
+  "tglPenetapan": "2025-11-05T08:55:33.827Z",
+  "tglJatuhTempo": "2025-11-10T00:00:00.000Z",
+  "pokok": 2000000,
+  "totalBayar": 2000000,
+  "sisaPokok": 0,
+  "status": "💰 Lunas",
+  "riwayat": [
+    {
+      "tanggal": "2025-11-05T00:00:00.000Z",
+      "nominal": 1000000,
+      "status": "Terverifikasi"
+    },
+    {
+      "tanggal": "2025-11-14T00:00:00.000Z",
+      "nominal": 1000000,
+      "status": "Terverifikasi"
+    }
+  ],
+  "string_verifikasi": "21971f83-d475-48b7-b4e7-dff3febd2016|Rp 2.000.000|💰 Lunas"
+}
