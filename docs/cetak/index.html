@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Cetak Laporan</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.js"></script>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<h1>Laporan Transaksi</h1>
+<div id="qrcode"></div>
+
+<script>
+function parse() {
+  const url=new URL(window.location.href);
+  return JSON.parse(decodeURIComponent(url.searchParams.get("data")||"{}"));
+}
+function buildQR(d){
+  const raw=d.string_verifikasi||"";
+  const sha=new jsSHA("SHA-256","TEXT");
+  sha.update(raw);
+  const hash=sha.getHash("HEX");
+  const url="https://example.github.io/laporan-cetak/verif/?id="+encodeURIComponent(d.nomorPinjaman)+"&hash="+hash;
+  new QRCode(document.getElementById("qrcode"),{text:url,width:140,height:140});
+}
+const data=parse();
+buildQR(data);
+</script>
+
+</body>
+</html>
