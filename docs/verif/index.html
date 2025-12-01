@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Verifikasi Dokumen</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.js"></script>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<h1>Verifikasi Dokumen</h1>
+<div id="hasil"></div>
+<div id="detail"></div>
+
+<script>
+function get(n){return new URL(window.location.href).searchParams.get(n);}
+const id=get("id");
+const hashQR=get("hash");
+
+fetch("../data/"+id+".json")
+.then(r=>r.json())
+.then(d=>{
+   const sha=new jsSHA("SHA-256","TEXT");
+   sha.update(d.string_verifikasi);
+   const h=sha.getHash("HEX");
+   document.getElementById("hasil").innerHTML = (h===hashQR)
+      ? "<div style='color:green;font-weight:bold;'>VALID</div>"
+      : "<div style='color:red;font-weight:bold;'>TIDAK SAH</div>";
+
+   document.getElementById("detail").innerHTML = `
+      <table>
+        <tr><th>Nomor</th><td>${d.nomorPinjaman}</td></tr>
+        <tr><th>Peminjam</th><td>${d.peminjamNama}</td></tr>
+        <tr><th>Pemberi</th><td>${d.pemberiNama}</td></tr>
+        <tr><th>Total</th><td>${d.totalBayar}</td></tr>
+        <tr><th>Status</th><td>${d.status}</td></tr>
+      </table>
+   `;
+});
+</script>
+
+</body>
+</html>
