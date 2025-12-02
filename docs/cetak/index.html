@@ -22,7 +22,7 @@ function buildQR(d){
   const sha=new jsSHA("SHA-256","TEXT");
   sha.update(raw);
   const hash=sha.getHash("HEX");
-  const url="https://example.github.io/laporan-cetak/verif/?id="+encodeURIComponent(d.nomorPinjaman)+"&hash="+hash;
+  const url="https://dikskoenma.github.io/laporan-cetak-full/verif/?id="+encodeURIComponent(d.nomorPinjaman)+"&hash="+hash;
   new QRCode(document.getElementById("qrcode"),{text:url,width:140,height:140});
 }
 const data=parse();
